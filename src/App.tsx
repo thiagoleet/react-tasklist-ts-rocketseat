@@ -16,6 +16,7 @@ export default function App() {
       id: crypto.randomUUID(),
       description: newTask,
       createdAt: new Date(),
+      isCompleted: false,
     };
 
     setTasks([...tasks, task]);
@@ -25,6 +26,21 @@ export default function App() {
 
   function handleTaskDelete(taskId: string) {
     setTasks(tasks.filter((task) => task.id !== taskId));
+  }
+
+  function handleTaskComplete(taskId: string) {
+    setTasks(
+      tasks.map((task) => {
+        if (task.id === taskId) {
+          return {
+            ...task,
+            isCompleted: !task.isCompleted,
+          };
+        }
+
+        return task;
+      })
+    );
   }
 
   function handleTaskInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -59,6 +75,7 @@ export default function App() {
               key={index}
               task={task}
               onDelete={handleTaskDelete}
+              onComplete={handleTaskComplete}
             />
           ))}
         </ul>

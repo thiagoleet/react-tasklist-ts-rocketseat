@@ -9,6 +9,11 @@
   transition: background 0.2s;
 }
 
+.task.completed {
+  background-color: var(--green-300);
+  color: var(--green-500);
+}
+
 .task p {
   font-weight: bold;
   margin-bottom: 0.25rem;
@@ -18,6 +23,10 @@
   font-size: 0.75rem;
   color: var(--gray-700);
   text-align: right;
+}
+
+.task.completed time {
+  color: var(--green-500);
 }
 
 .task .content {
