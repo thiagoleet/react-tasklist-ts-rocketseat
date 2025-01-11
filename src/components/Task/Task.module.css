@@ -1,0 +1,25 @@
+.task {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  background-color: var(--gray-300);
+  margin-bottom: 0.5rem;
+  color: var(--gray-900);
+}
+
+.task:hover {
+  background-color: var(--red-500);
+  cursor: pointer;
+}
+
+.task p {
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.task time {
+  font-size: 0.75rem;
+  color: var(--gray-700);
+  text-align: right;
+}
