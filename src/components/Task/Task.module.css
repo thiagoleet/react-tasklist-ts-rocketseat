@@ -43,8 +43,13 @@
   transition: background 0.2s;
 }
 
-.task .actions button:hover {
+.task .actions button:not(:disabled):hover {
   color: var(--white);
+}
+
+.task .actions button:disabled {
+  opacity: 0.1;
+  cursor: not-allowed;
 }
 
 .task .actions button[role="delete"] {
