@@ -23,6 +23,10 @@ export default function App() {
     setNewTask("");
   }
 
+  function handleTaskDelete(taskId: string) {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  }
+
   function handleTaskInputChange(event: React.ChangeEvent<HTMLInputElement>) {
     setNewTask(event.target.value);
   }
@@ -54,6 +58,7 @@ export default function App() {
             <Task
               key={index}
               task={task}
+              onDelete={handleTaskDelete}
             />
           ))}
         </ul>

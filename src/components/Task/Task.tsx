@@ -4,14 +4,22 @@ import styles from "./Task.module.css";
 
 interface TaskProps {
   task: TaskItem;
+  onDelete: (taskId: string) => void;
 }
 
-export const Task = ({ task }: TaskProps) => {
+export const Task = ({ task, onDelete }: TaskProps) => {
   const [publishedDateFormated, publishedDateRelativeToNow, ISODate] =
     useFormatDate(task.createdAt);
 
+  function handleDeleteClick() {
+    onDelete(task.id);
+  }
+
   return (
-    <li className={styles.task}>
+    <li
+      className={styles.task}
+      onClick={handleDeleteClick}
+    >
       <p>{task.description}</p>
       <time
         title={publishedDateFormated}
