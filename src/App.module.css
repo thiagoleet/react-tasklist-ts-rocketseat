@@ -56,3 +56,11 @@
   opacity: 0.1;
   cursor: not-allowed;
 }
+
+.taskList {
+  margin-top: 1rem;
+}
+
+.taskList ul {
+  list-style: none;
+}
