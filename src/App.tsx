@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./App.module.css";
 import { Task } from "./components/Task";
+import { TaskItem } from "./models/TaskItem";
 
 export default function App() {
-  const [tasks, setTasks] = React.useState<string[]>([]);
+  const [tasks, setTasks] = React.useState<TaskItem[]>([]);
   const [newTask, setNewTask] = React.useState<string>("");
 
   const isNewTaskFieldClear = newTask.trim() === "";
@@ -11,7 +12,15 @@ export default function App() {
   function handleFormSubmit(event: React.FormEvent) {
     event.preventDefault();
 
-    setTasks([...tasks, newTask]);
+    const task: TaskItem = {
+      id: crypto.randomUUID(),
+      description: newTask,
+      createdAt: new Date(),
+    };
+
+    setTasks([...tasks, task]);
+
+    setNewTask("");
   }
 
   function handleTaskInputChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -28,6 +37,7 @@ export default function App() {
           <input
             type="text"
             placeholder="Task"
+            value={newTask}
             onChange={handleTaskInputChange}
           />
           <button
@@ -41,7 +51,10 @@ export default function App() {
       <div className={styles.taskList}>
         <ul>
           {tasks.map((task, index) => (
-            <Task key={index} />
+            <Task
+              key={index}
+              task={task}
+            />
           ))}
         </ul>
       </div>
